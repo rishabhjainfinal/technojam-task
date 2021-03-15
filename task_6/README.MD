@@ -10,6 +10,6 @@ Design a desktop application using python to validate an email. (Intermediate)
 
 ## Results 😁😎😎
 <div>
-    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/default.PNG" alt="question" width="400" >
-    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main//task_12/solved.PNG" alt="solved" width="400" >
+    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_6/default.PNG" alt="question" width="400" >
+    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main//task_6/solved.PNG" alt="solved" width="400" >
 </div>

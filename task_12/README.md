@@ -2,7 +2,7 @@
   - Create a phishing web page of https://www.facebook.com/ . Credentials entered by the target should be available on the host machine.
   - Make an android payload (.apk file) to dump target’s contact info remotely, using metasploit
 
-# Create a phishing web page of https://www.facebook.com/ . Credentials entered by the target should be available on the host machine.
+# 1. Create a phishing web page of https://www.facebook.com/ . Credentials entered by the target should be available on the host machine.
 using `social-engineer-toolkit` ==> ["https://github.com/trustedsec/social-engineer-toolkit"] to create the phishing site for the target
 <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/1-set.PNG" alt="default" width="600" >
 
@@ -16,14 +16,16 @@ using `social-engineer-toolkit` ==> ["https://github.com/trustedsec/social-engin
 <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/web-results.PNG" alt="default" width="700" >
 
 ## results
-<img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/results.PNG" alt="default" width="700" >
+<img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/result.PNG" alt="default" width="700" >
 
 ### we can also use blackeye here ["https://github.com/An0nUD4Y/blackeye"]  😎😎
 reference - ["https://medium.com/@leandro.almeida/setoolkit-fake-facebook-site-e0b21fb08a50"]
 
 ----------
+----------
+----------
 
-# Make an android payload (.apk file) to dump target’s contact info remotely, using metasploit
+# 2. Make an android payload (.apk file) to dump target’s contact info remotely, using metasploit
 
 ## steps:
   1. open terminal and start msfconsole

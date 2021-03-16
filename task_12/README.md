@@ -38,7 +38,7 @@ reference - ["https://medium.com/@leandro.almeida/setoolkit-fake-facebook-site-e
       4. set LPORT 6996
       5. exploit
   5. wait for the target to install the app this app will not show in the home app list 
-    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/2-install.png" alt="default" width="700" >
+    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/2-install.PNG" alt="default" width="700" >
   6. we can use lifelong script to keen running the session  
     <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/2-results2.PNG" alt="default" width="700" >
 

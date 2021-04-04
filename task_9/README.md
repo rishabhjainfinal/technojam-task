@@ -5,7 +5,7 @@ add new items
 delete single/multiple items
 update items
 
-- [X] DONE
+- [X] DONE with CRUD 👍
 
 ## setup 
 use `cd TODO-web && npm install && npm start` to see the results on localhost

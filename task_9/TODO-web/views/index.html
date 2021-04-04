@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style>
+        *{
+            outline: none;
+        }
+        body{
+            background-color: #bdc3c7;
+        }
+        #modal{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.481);
+            display: flex;
+            flex-direction: column  ;
+            justify-content: center;
+            align-items: center;
+        }
+        .input-data {
+            width: 50%;
+        }
+        .input-data input {width: 100%;text-align: center;}
+
+        .action{
+            display: flex;
+            width: 50%;
+        }
+        .cancel-btn{width: 49%;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="center-block" style="text-align: center;">TO-DO List</h1>
+        <div class="input_filed" style="text-align: center;margin: 1.5em;">
+            <form id="crete-entry" action="/api/create" method="post">
+                <input style="border-radius: 10px;" name="task" type="text">
+                <input style="border-radius: 10px;" type="submit" value="GO">
+            </form>
+        </div>
+        <div class="list-group" id="past-todo-list">
+            <!-- onclick update or delete -->
+        </div>
+        <div id="modal" >
+            <div class="input-data">
+                <input id="modal_key" type="hidden"></input>
+                <input autofocus style="border-radius: 5px; font-size: 2em;margin-bottom: 1em;" class="task" id="modal_task"></input>
+            </div>
+            <div class="action">
+                <button id="modal_del_btn" style="width: 100%; margin: 10px;" class="btn-danger btn-lg" >Delete</button>
+                <button id="modal_update_btn" style="width: 100%; margin: 10px;" class="btn-primary btn-lg" >Update</button>
+            </div>
+            <button id="modal_cancel_btn" class="cancel-btn btn-default btn-lg" >Cancel</button>
+        </div>
+    </div>
+</body>
+<script>
+    // app.js
+    var todo_list_div = document.getElementById("past-todo-list")
+    var create_entry = document.getElementById("crete-entry")
+    var modal = document.getElementById("modal")
+    var modal_key = document.getElementById("modal_key")
+    var modal_task = document.getElementById("modal_task")
+    var modal_del_btn = document.getElementById("modal_del_btn")
+    var modal_update_btn = document.getElementById("modal_update_btn")
+    var modal_cancel_btn = document.getElementById("modal_cancel_btn")
+    modal.style.visibility = "hidden";
+    render_list()
+    modal_cancel_btn.addEventListener('click',(e)=>{
+            modal.style.visibility = "hidden";
+    })
+    modal_del_btn.addEventListener('click',(e)=>{
+            delete_data(modal_key.getAttribute("key"))
+            modal.style.visibility = "hidden";
+        })
+    modal_update_btn.addEventListener('click',(e)=>{
+        update(modal_key.getAttribute("key"),modal_task.value)
+        modal.style.visibility = "hidden";
+    })
+    
+    create_entry.addEventListener("submit",(e)=>{
+        e.preventDefault()
+        if (e.target[0].value.trim()){
+            // make a request here
+            fetch('/api/create', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body:`task=${e.target[0].value.trim()}`             
+            })
+            .then(res => res.json())
+            .then(data=> render_list())
+        }
+        e.target[0].value = ''
+    })
+
+    function render_list(){
+        todo_list_div.innerHTML = '';
+        // show any prexist data 
+        var data = fetch("/api/read")
+        .then(response => response.json())
+        .then(data => {
+            let count = 0;
+            for (let k in data){
+                let key = k
+                let value = data[k] 
+                // console.log(key,value);
+                let btn = document.createElement("BUTTON");
+                btn.setAttribute("class", "list-group-item");
+                btn.setAttribute("key", key);
+                btn.addEventListener("click",_ => clicked(btn))
+                count++;
+                btn.innerHTML = `${count}. ${value}`
+                todo_list_div.appendChild(btn)
+            };
+        });
+    }
+    
+    function delete_data(id){
+        fetch('/api/delete', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body:`id=${id}`             
+            })
+            .then(res => res.json())
+            .then(data=> render_list())
+    }
+   
+    function update(id,data){
+        fetch('/api/update', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body:`id=${id}&task=${data}`             
+            })
+            .then(res => res.json())
+            .then(data=> render_list())
+    }    
+
+    // clicked event
+    function clicked(ele) {
+        modal.style.visibility = "visible";
+        // show model to update the value or delete
+        modal_task.value = ele.innerHTML.split(". ")[1];
+        modal_key.setAttribute("key", ele.getAttribute("key"));
+    }
+</script>
+</html>
